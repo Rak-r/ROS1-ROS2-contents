@@ -61,3 +61,27 @@ Costmaps have different layers which consist different information about the env
 Joint state Publisher: In order to move the robot for a specific task or operation it is important to have the full detailed data of veery joint of the robot like the angle for the moving joint, displacemnet of linear actuator and velocity. Joint state publisher is used to keeping the track of this data and sends it to Robot state Publisher.
 
 Robot state Publisher: This recieves the data from the Joint state publisher and outputs the position and orientation of each coordinate frame and this data is pubishes to the TF2 library/package of ROS2 which keeps the track record for all the co-ordinate frames over time.
+
+TF2 library: It takes the input from the robot state publsher and is responsilble for keeping track of pose estimate and orientation of all coordinate frames over time.
+
+Fusion of sensors: The data recieved or collected from different sensors like LiDARs, Caneras, IMUs etc need to fused in order to use that infomation for robust working in different scenarios. To fuse the multi-sensor data, mtoion models are used and one of the most common method used is called Kalman Filtering. The Different-drive robot, Ackermann steered robot mostly uses Extended Kalman filtering (EKF) and partu=icle filter Monte Carlo method is used.
+
+
+SLAM ToolBox:
+
+ROS1 featured different SLAM approaches in order to build the map and perform localization. These methods are Gmapping, Cartograph, Karto Slam. In ROS2, the Gmapping has been replaced with Slam_toolbox.
+Slam_toolbox works in the following way:
+
+1.) ROS Node: SLAM toolbox runs in synchronous mode and generates a ros node hwich subcribes tpo the laser scan and odometry topics and publishes map to odom transform and a map.
+
+2.) Getting LiDAR and Odometry Data: A callback from laser topic generates a pose and a laser scan is attached to the node. The posedscan objects makes a queue, which uis processed by the algorithm (Karto).
+
+3.) Pose Graph: The PosedScan object queue are used to form a pose graph which is utilised compute the robot pose and find loop closures.
+
+4.) Mapping: Laser scans associated to each pose in the Pose Graph are used to construct and publish a map.
+
+Loop Closure: Ability of a SLAM algorithm to identify the previously detected images and correct the drift accumulated during the sensor movement.
+
+Major changes:
+
+rospy --> rclpy

@@ -17,7 +17,7 @@
 
 ## To see some plots, run the `rosbag_extarcter.py`.
 
-### Before running the below script, if you want to vislaize all the message data fron `/odometry/filtered` topic from ros2 bag, try chnaging the `self.data_range` parameter to number of `/odometry/filtered` messages which can be visualised in the `metadata.yaml` of the ros2 bag.
+### Before running the below script, if you want to vislaize all the message data fron `/odometry/filtered` topic from ros2 bag, try changing the `self.data_range` parameter to number of `/odometry/filtered` messages which can be visualised in the `metadata.yaml` of the ros2 bag.
 * After specifying the range of messages, run in terminal: `python3 rosbag_extracter.py`
 
 

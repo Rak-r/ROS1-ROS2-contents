@@ -1,3 +1,35 @@
+# Using the Repository
+
+1. Clone the repository. `git clone https://github.com/Rak-r/ROS1-ROS2-contents.git`
+
+2. Navigate inside the repository directory. `cd <repo_directoy>`
+
+
+3. Open termnal and type command:  `ros2 bag play odometry`
+
+4. If want to visualise the topics, run:   `ros2 topic list -t`
+ 
+5. If want to visualize properly in rviz2, then make sure nav2 is installed. https://navigation.ros.org/getting_started/index.html#installation
+ 
+6. After installing NAV2, run: `rviz2 -d '/opt/ros/humble/share/nav2_bringup/rviz/nav2_default_rviz'`
+
+
+
+## To see some plots, run the `rosbag_extarcter.py`.
+
+### Before running the below script, if you want to vislaize all the message data fron `/odometry/filtered` topic from ros2 bag, try chnaging the `self.data_range` parameter to number of `/odometry/filtered` messages which can be visualised in the `metadata.yaml` of the ros2 bag.
+* After specifying the range of messages, run in terminal: `python3 rosbag_extracter.py`
+
+
+## The script can be expanded to visualise more data as required.
+
+
+
+
+
+
+
+
 # ROS1-ROS2-contents
 This repoistroy contains the information about the concepts of ROS1 and ROS2. It can also be suitable for porting the existing ROS1 projects to ROS2 as the repository mentions most of the possible erros and steps for new beginner to ROS/ROS2.
 

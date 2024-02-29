@@ -13,7 +13,7 @@
  
 6. After installing NAV2, run: `rviz2 -d '/opt/ros/humble/share/nav2_bringup/rviz/nav2_default_rviz'`
 
-
+7. You can also just run: `rviz2` in terminal.  Make sure to chnage the global frame to map to visualize the bag and add the topics `/odomerty/filtered`, `/map`, `/scan`.
 
 ## To see some plots, run the `rosbag_extarcter.py`.
 

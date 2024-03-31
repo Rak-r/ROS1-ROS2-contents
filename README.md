@@ -416,9 +416,10 @@ The ROS2 navigation stack is working but some issues are still hanging.
  
 1. #### STEP 1
    Folow the guide for ros2 link for intel wraper -- (https://github.com/IntelRealSense/realsense-ros#installation-instructions)
+   
      *Choose option 1 and click on linux debian installation guide and run commands mentioned line by line.
 
-2. #### Now for specificaly ROS2 Integration 
+3. #### Now for specificaly ROS2 Integration 
 
 *In the same repo:
 *Under installation and step 2 : install latest Intel® RealSense™ SDK 2.0 
@@ -435,6 +436,13 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 #### REFER THIS: https://github.com/IntelRealSense/realsense-ros/issues/2295
 
+
+
+#### Some links to estimate rotation angle for detected objects from cameras
+
+* https://github.com/pauloabelha/Deep_Object_Pose/blob/master/src/dope.py
+
+* https://github.com/IntelRealSense/librealsense/issues/7560
 
   
 

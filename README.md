@@ -436,7 +436,17 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 #### REFER THIS: https://github.com/IntelRealSense/realsense-ros/issues/2295
 
+#### Odometry estimation from steering input, ackermann robot, fusing VO and wheel odometry
 
+* https://robotics.stackexchange.com/questions/110374/issues-while-setting-up-ekf-for-ackermann-steered-robot
+* https://robotics.stackexchange.com/questions/105045/ukf-position-data-closely-match-slam-absolute-pose-regard-wheel-odometry/108335#108335
+
+#### RTAB MAP related queries and setuo clues for ros2 with rgbd sensor intel realsense in my case.
+
+* https://github.com/introlab/rtabmap_ros/issues/398
+* http://wiki.ros.org/rtabmap_ros/Tutorials/SetupOnYourRobot
+* https://github.com/introlab/rtabmap/issues/391
+* https://github.com/introlab/rtabmap_ros/issues/467
 
 #### Some links to estimate rotation angle for detected objects from cameras
 

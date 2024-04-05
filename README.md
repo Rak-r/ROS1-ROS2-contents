@@ -436,7 +436,14 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 #### REFER THIS: https://github.com/IntelRealSense/realsense-ros/issues/2295
 
-#### Making Teensy communicate with Ubuntu for serial connections   `https://www.pjrc.com/teensy/loader_linux.html`
+### Making Teensy communicate with Ubuntu for serial connections   `https://www.pjrc.com/teensy/loader_linux.html`
+
+#### Downloading serial in Linux/Ubuntu: `https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/python3-serial_3.5-1_all.deb.html'
+
+* Grant permission to serial port for read and write in Linux using: `sudo chmod a+rw /dev/ttyACM0` replace the port name with whatever is it.
+
+* Add user to dialout and tty group using: `sudo usermod -a -G tty <name_of_user>`,   `sudo usermod -a -G dialout <name_of_user>`
+
 
 Add the udev rules to `/etc/udev/rules.d/
 

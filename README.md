@@ -436,6 +436,16 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 #### REFER THIS: https://github.com/IntelRealSense/realsense-ros/issues/2295
 
+#### Making Teensy communicate with Ubuntu for serial connections   `https://www.pjrc.com/teensy/loader_linux.html`
+
+Add the udev rules to `/etc/udev/rules.d/
+
+* How?
+
+* Copy the udev rules from: `https://www.pjrc.com/teensy/00-teensy.rules` to a file create with name: `00-teensy.rules`
+
+* Restart the terminal and serial code again and it should read the port.
+
 #### Odometry estimation from steering input, ackermann robot, fusing VO and wheel odometry
 
 * https://robotics.stackexchange.com/questions/110374/issues-while-setting-up-ekf-for-ackermann-steered-robot

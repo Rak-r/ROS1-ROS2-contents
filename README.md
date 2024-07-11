@@ -4,32 +4,14 @@
 
 2. Navigate inside the repository directory. `cd <repo_directoy>`
 
+## ROS2 Helping Scripts
 
-3. Open termnal and type command:  `ros2 bag play odometry`
+The repo consists of different various ROS2 nodes which can be used for quite specific scenarios and has been tested with a real robot platoform. I have tried to keep the track of different scenraios encounterd while developing a full customautonomous vehicle robot based on ROS2.
 
-4. If want to visualise the topics, run:   `ros2 topic list -t`
- 
-5. If want to visualize properly in rviz2, then make sure nav2 is installed. https://navigation.ros.org/getting_started/index.html#installation
- 
-6. After installing NAV2, run: `rviz2 -d '/opt/ros/humble/share/nav2_bringup/rviz/nav2_default_rviz'`
 
-7. You can also just run: `rviz2` in terminal.
    
-#### Make sure to change the `global frame` to `map` to visualize the bag and add the topics `/odomerty/filtered`, `/map`, `/scan`.
 
-### To see some plots, run the `rosbag_extarcter.py`.
-
-### Before running the below script, if you want to vislaize all the message data fron `/odometry/filtered` topic from ros2 bag, try changing the `self.data_range` parameter to number of `/odometry/filtered` messages which can be visualised in the `metadata.yaml` of the ros2 bag.
-* After specifying the range of messages, run in terminal: `python3 rosbag_extracter.py`
-
-
-### The script can be expanded to visualise more data as required.
-
-
-
-
-
-
+### Scripts could be expanded to visualise more data as required.
 
 
 # ROS1-ROS2-contents
@@ -268,8 +250,7 @@ Then, launching the navigation file and set the initla pose using 2DPoseEstimate
 
 5. How the transform settled up for `odom to base_link` from gazebo.
 
-7. Create the `GZ --> ROS` bridge for transferring the topic `/model/podcar/tf` which contains the transnform of `odom to base_link` to ROS2 side and remapp the topic to `/tf` as ROS publishes 2 simple topics related to transforms.
-* /tf and /tf_static.
+7. Create the `GZ --> ROS` bridge for transferring the topic `/model/podcar/tf` which contains the transnform of `odom to base_link` to ROS2 side and remapp the topic to `/tf` as ROS publishes 2 simple topics related to transforms `/tf and /tf_static`.
 
 8. Check that the remapped tf topic getting the `odom to base_link` transform.
 
@@ -278,16 +259,16 @@ Then, launching the navigation file and set the initla pose using 2DPoseEstimate
 1. #### Map_server error [map-io]-->> Not able to load the map image, just check that correct path has been provided in the launc file argument.
 
 2. #### [amcl-2] [ERROR] [1688743948.427156062] []:
-*Original error: According to the loaded plugin descriptions the class differential with base class type nav2_amcl::MotionModel does not exist. Declared types are  nav2_amcl::DifferentialMotionModel nav2_amcl::OmniMotionModel
+* Original error: According to the loaded plugin descriptions the class differential with base class type nav2_amcl::MotionModel does not exist. Declared types are  nav2_amcl::DifferentialMotionModel nav2_amcl::OmniMotionModel
 
 #### SOLUTION: 
-*Change the parameter defination of robot_model_type : differential to nav2::DifferentialMotionModel
+* Change the parameter defination of robot_model_type : differential to nav2::DifferentialMotionModel
 
 3. Transforms are not published (map-->odom) and (odom-->base_link).
 
 4. Robot is jumping to and fro.
 #### Reason -->> 
-*It is because the when launching the AMCL and SLAM_TOOLBOX together both the nodes are publishing to the map topic and the transform (Map to Odom), which might interfare each other. To solve, try to disable AMCL from NAV2 CONFIG/PARAMS FILE.
+* It is because the when launching the AMCL and SLAM_TOOLBOX together both the nodes are publishing to the map topic and the transform (Map to Odom), which might interfare each other. To solve, try to disable AMCL from NAV2 CONFIG/PARAMS FILE.
 
 5. Even after changing the NAV2 PARAMS under global and local costmap the parameter footprint-padding to double type, still showing the same issue 
 
@@ -301,9 +282,9 @@ Then, launching the navigation file and set the initla pose using 2DPoseEstimate
  * Other error costmap might look:  https://github.com/ros-planning/navigation2/issues/2541
  
 8. #### My issues for NAV2 :
- *Unable to run controller and planner server https://github.com/ros-planning/navigation2/issues/3703
+ * Unable to run controller and planner server https://github.com/ros-planning/navigation2/issues/3703
  
- *Second Issue: Unable to use Smac planner based NAV2 params https://github.com/ros-planning/navigation2/issues/3717
+ * Second Issue: Unable to use Smac planner based NAV2 params https://github.com/ros-planning/navigation2/issues/3717
  As suggest in issue number 8 above, just try to rebuild the workspace freshly to see the changes in NAV2 package. 
  
 
@@ -319,7 +300,7 @@ Then, launching the navigation file and set the initla pose using 2DPoseEstimate
 
 10. #### ERROR: bt navigator is not starting,
    #### Soltuion: 
-   *try to provide he right Path to xml node in the nav2 params file or in the launch filea the default nav2 launch file suggests (DISAPPEARED).
+   * try to provide he right Path to xml node in the nav2 params file or in the launch filea the default nav2 launch file suggests (DISAPPEARED).
 
 11. Look for issue: https://github.com/ros-planning/navigation2/issues/3521
 
@@ -352,12 +333,8 @@ Then, launching the navigation file and set the initla pose using 2DPoseEstimate
 * #### (LINUX HACK) --->>> Use diff command from linux to check the difference between the files for easy visualization. (diff -y nav2_params.yaml navigation.yaml).
 * #### ROS2 HACK ---> https://roboticsbackend.com/build-a-ros2-data-pipeline-with-ros2-topics/
 * #### The last compatible version of `setuptools` wth ROS2 Humble is `58.2.0`.
-   ** So to build python packages withput error do: `pip install setuptools==58.2.0 in usr or main system. not in venv`
+   * So to build python packages withput error do: `pip install setuptools==58.2.0 in usr or main system. not in venv`
  
-
-#### See this issue --->>>>  https://robotics.stackexchange.com/questions/24036/lookup-would-require-extrapolation-into-the-future-on-the-same-machine
-
-#### Might be related to time -->> https://answers.ros.org/question/379705/amcl-failed-to-transform-initial-pose-in-time/
 
 ### NAV2 ISSSUES WITH ROBOT CONTROL 
 
@@ -371,23 +348,21 @@ https://github.com/ros-planning/navigation2/issues/3737
 * https://robotics.stackexchange.com/questions/105003/nav2-robot-cant-create-valid-plan
 
 #### Parameter to change for robot navigation in reverse:
-*Just set the min_vel_x param in DWB controller to some negative value, say (-0.5) and try it.
+* Just set the min_vel_x param in DWB controller to some negative value, say (-0.5) and try it.
 (https://groups.google.com/g/ros-sig-navigation/c/z-9iCtvwGIA)
 
-### Odometry for real OpenPodCar_V2
+## Odometry for real robot based on VO, Laser and no other sensor
 
-1. Looked for VO approaches but all of them a bit complicated and needs ros2 wrappers
-
-2. Go with podcar's 1 laserscan matching style for getting the podcar 2' odometry.
+Looked for VO approaches but all of them a bit complicated and needs ros2 wrappers. Below are some solutions.
 
 ### Laser Scan Matcher:
 A laser scan matcher is an algorithm to estimate robot's motion or pose (position and orientation).
 #### How?
 
-*Firstly, the sensor maybe lidar or depth cameras which produces point clouds (can be converted to laserscan) and laser scans data is captured.
-*Then, data aquisition takes place, meaning the lasersca data is represnetd in 2d space as a collect of 2d points consisting of objects in robot's surroundings.
-*The scan matcher takes scans and tries to find the best relative transformation (translation and rotation) between them.
-*Once, the best transformation is found it is used to compute the robot's odometry which includes chnages in (position and orientation)
+* Firstly, the sensor maybe lidar or depth cameras which produces point clouds (can be converted to laserscan) and laser scans data is captured.
+* Then, data aquisition takes place, meaning the lasersca data is represnetd in 2d space as a collect of 2d points consisting of objects in robot's surroundings.
+* The scan matcher takes scans and tries to find the best relative transformation (translation and rotation) between them.
+* Once, the best transformation is found it is used to compute the robot's odometry which includes chnages in (position and orientation)
 
 #### Note: Laser scan matcher setteled up.
 
@@ -395,7 +370,7 @@ A laser scan matcher is an algorithm to estimate robot's motion or pose (positio
 
 The ROS2 navigation stack is working but some issues are still hanging.
 
-#### STEPS:
+### STEPS:
 
 1. Let the gazebo simulation run on its simulation time and publish the topics `/model/podcar/odometry`, `/lidar_scan` and the transform `odom to base_link` on `/tf` topic. 
 2. The time stamp on these topics will be sim time of gazebo which starts from 0 seconds everytime the gazebo is launched.
@@ -412,7 +387,7 @@ The ROS2 navigation stack is working but some issues are still hanging.
   
 ##### For the rest can follow the tutorial -->>  https://docs.ros.org/en/crystal/Tutorials/Custom-ROS2-Interfaces.html
 
-### INTEL REALSENSE CAMERA INSTALLATION 
+## INTEL REALSENSE CAMERA INSTALLATION 
  
 1. #### STEP 1
    Folow the guide for ros2 link for intel wraper -- (https://github.com/IntelRealSense/realsense-ros#installation-instructions)
@@ -428,15 +403,49 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 3. Then, install ROS2 Wrapper
 
-*option 1 -->> `sudo apt install ros-humble-realsense2-*`
+* option 1 -->> `sudo apt install ros-humble-realsense2-*`
 
 #### REALSENSE ROS2 wrapper to visualize pointclouds on Pointcloud2 message type
 
-*`ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true pointcloud.enable:=true`
+* `ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true pointcloud.enable:=true`
 
 #### REFER THIS: https://github.com/IntelRealSense/realsense-ros/issues/2295
 
-### Making Teensy communicate with Ubuntu for serial connections   `https://www.pjrc.com/teensy/loader_linux.html`
+
+
+## Reading Serial Port in Ubuntu 22.04 (Tested but same for most)
+
+* Tried -->  `dmesg | grep tty` ,  failed at first Operation not permitted
+
+* try -->> `sudo dmesg | grep tty,sudo dmesg | tail`
+
+* Then --> `sudo sysctl kernel.dmesg_restrict=0`       [run once]
+
+* Try again --> `dmesg | grep tty`
+
+* To check the ports with python serial first download python3-serial for linux using -->> `sudo apt-get install python3-serial`
+
+* Then in terminal -->> `python3 -m serial.tools.list_ports`  [this will shw if there is port detcted or not]
+
+
+#### Problem 1 : Cannot open /dev/ttyACM0: Permission denied
+#### Solution : 
+
+* Grant permissions to read/write to the serial port with this terminal command ---> `sudo chmod a+rw /dev/ttyACM0` Here replace tty port with your respective ubuntu port.
+
+#### Problem 2 : Failed to open /dev/ttyACM0 (port busy) Solution : This problem appears when serial port is busy or already occupied. 
+#### Solution:
+* So kill the busy serial port with command ---> `fuser -k /dev/ttyACM0`. Here replace tty port with your respective ubuntu port.
+
+#### Problem 3 : Board at /dev/ttyACM0 is not available Solution : In this case your serial port in tools menu will be greyed out. 
+#### Solution:
+* I googled a lot for this, but I none of solution worked for me. Atlast I tried different arduino board and usb connector and it was working for me. So, if you are having old arduino board (can be solved using required drivers) or defected arduino board then only this problem arises.
+
+* Try this as well -->> 
+* `groups computing`
+* `sudo usermod -a -G tty computing`
+* `sudo usermod -a -G dialout computing`
+* `groups computing`
 
 #### Downloading serial in Linux/Ubuntu: `https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/python3-serial_3.5-1_all.deb.html'
 
@@ -444,10 +453,10 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 * Add user to dialout and tty group using: `sudo usermod -a -G tty <name_of_user>`,   `sudo usermod -a -G dialout <name_of_user>`
 
+## Making Teensy communicate with Ubuntu for serial connections   `https://www.pjrc.com/teensy/loader_linux.html`
+* Add the udev rules to `/etc/udev/rules.d/`
 
-Add the udev rules to `/etc/udev/rules.d/
-
-* How?
+#### How?
 
 * Copy the udev rules from: `https://www.pjrc.com/teensy/00-teensy.rules` to a file create with name: `00-teensy.rules`
 

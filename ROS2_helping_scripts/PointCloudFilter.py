@@ -1,4 +1,9 @@
 #!/use/bin/env python3
+
+'''
+THis script helps to acess the PointCloud2 ROS2 message to perform further custom operations like filtering, 3D data related tasks.
+'''
+
 import pcl
 import rclpy
 from rclpy.node import Node

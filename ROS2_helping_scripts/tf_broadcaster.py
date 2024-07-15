@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+'''
+This script could be used to publish the transform between odom and base link from the odomerty messag or any other as per requirement.
+'''
+
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
@@ -5,7 +11,7 @@ import tf2_ros
 import tf_transformations as tf
 from geometry_msgs.msg import TransformStamped
 
-class podcar_tf_broadcaster(Node):
+class tf_broadcaster(Node):
     def __init__(self):
         super().__init__('tf_frame_publisher')
 
@@ -13,7 +19,7 @@ class podcar_tf_broadcaster(Node):
         self.trans_br = tf2_ros.TransformBroadcaster(self)
 
         #create the subscriber to this node which will subscribe and publish the transforms accordingly
-        self.subscriber_ = self.create_subscription(Odometry, '/odom', self.callback, 1)
+        self.subscriber_ = self.create_subscription(Odometry, '/odom', self.callback, 10)
 
     #callback function
     def callback(self, msg):
@@ -42,7 +48,7 @@ class podcar_tf_broadcaster(Node):
 
 def main():
     rclpy.init()
-    node = podcar_tf_broadcaster()
+    node = tf_broadcaster
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

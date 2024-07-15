@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+'''
+THis script help to publish the wall time /real time over a ROS2 message.
+'''
+
 import rclpy
 from rclpy.node import Node
 from rosgraph_msgs.msg import Clock

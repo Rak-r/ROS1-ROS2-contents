@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+
+'''
+This script could be used to manupulate the cmd_vel (Twist) message  for control nodes of robot.
+
+'''
+
+
 import numpy as np
 import rclpy
 from rclpy.node import Node

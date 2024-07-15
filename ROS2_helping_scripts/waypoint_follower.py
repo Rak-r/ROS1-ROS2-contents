@@ -12,6 +12,8 @@ from rclpy.duration import Duration
 Basic security route patrol demo. In this demonstration, the expectation
 is that there are security cameras mounted on the robots recording or being
 watched live by security staff.
+
+Referenced from officila NAV2 github: https://github.com/ros-navigation/navigation2/blob/humble/nav2_simple_commander/nav2_simple_commander/demo_security.py 
 """
 
 

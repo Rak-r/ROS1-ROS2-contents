@@ -465,6 +465,26 @@ The ROS2 navigation stack is working but some issues are still hanging.
 * https://robotics.stackexchange.com/questions/110374/issues-while-setting-up-ekf-for-ackermann-steered-robot
 * https://robotics.stackexchange.com/questions/105045/ukf-position-data-closely-match-slam-absolute-pose-regard-wheel-odometry/108335#108335
 
+
+#### Setting up RTABMAP FOR RGB-D SLAM and Visula Odometry
+
+In case your robot only have RGBD or stereo camera as the main sensor for Localization & Mapping tasks, RTABMAP is one the widely adopted SLAM algorithm.
+
+However, there are numerous ways to setup RTABMAP for specific purpose and it sometimes becomes confusing, that;s why I added the guide for some most confusing queries and which I faced myself as well. 
+
+## RTABMAP setup for both RGB-D SLAM and VO using single camera sensor (Intel Realsense D435):
+
+1. In the standard launch file provided by RTABMAP (ROS2), replace the topic name of depth image and rgb image.
+
+2. Parameters to set to true are: 'subcribe_rgb` and `subcribe_depth`.
+
+3. If want the `LaserScan` to create 2D occupancy Map instead of making it via depth image, set `subcribe_scan = 'Ture'`, it will ignore depth image
+and generate 2D Map for NAV2 via `LaserScan`. 
+
+4. To convert `depth to scan`, we can use `depthimage_to_laserscan` which I don't recommend. The reason behind is the package reports `Nan`, when the sensor is on Holiday (cannot see any data out of desired range) while the other ROS2 stack incluing NAV2, SLAM algorithms demands `Inf`. To have this corrected at the time of my project, the other package `pointcloud_to_laserscan` was used which directly converts the `PointCloud2` message to 1D `LaserScan`.
+
+5. The other paramters could be tuned according to further needs.
+
 #### RTAB MAP related queries and setuo clues for ros2 with rgbd sensor intel realsense in my case.
 
 * https://github.com/introlab/rtabmap_ros/issues/398
@@ -472,14 +492,29 @@ The ROS2 navigation stack is working but some issues are still hanging.
 * https://github.com/introlab/rtabmap/issues/391
 * https://github.com/introlab/rtabmap_ros/issues/467
 
-#### Some links to estimate rotation angle for detected objects from cameras
 
-* https://github.com/pauloabelha/Deep_Object_Pose/blob/master/src/dope.py      
+## Setting RTABMAP with EKF to fuse VO and other sensor, in my case Optical Flow Sensor
 
-* https://github.com/IntelRealSense/librealsense/issues/7560                    
+   1. Firstly check the Rtabmap slam with just the RTAB'S RGBD oodmetry and verify it behaves correct for indoors.
 
+   2. Now, if fusing the data from other sensors and RGBD odometry, turn of the transform publisher parameter in RGBD odometry. publish_tf : False for odom->base_link
 
+   3. Make sure that your sensor node / wheel odmetry node not publishing tf from odom->base_link.
 
+   4. Add the odom topics or whatever your node outputs, to the EKF and use absolute poses from the one which you are more confident and use velocities from the one which is less stable. Example: VO gets lost with white walls , at that time just need other source to handle the cases.
 
+   5. Then, in RGBD odometry launch file, set the publish_null_when_lost : False and 'Odom/ResetCountdown': '1' to immediately reset and use the other source for measurement.
 
+   6. Run rviz/rviz2 and visualize its behaving as similar as the case with just RGBD odometry in global frame set to odom, small difference will be fine.
 
+   7. Now, in the RTABMAP's Slam launch file, remap the topic odom to EKF's output topic usually odometry/filtered and start the slam, change the global frame to map, if want test your ways or try as the one mentioned in my issue.
+
+   8. There might be need to tweak EKF's process noise covariances.
+
+### Other way for same setup
+
+   1. Set frame id to vo if want to use RGBD oodmetry as like as ekf and set guess_frame_id to odom & keep publishing odom -> base_link from your sensor or wheel odometry
+
+   2. This will not break the tf tree and new setup would be like vo -> odom -> base_link.
+
+   3. When RTABMAP's Slam is launched the tf tree would look like map -> vo -> odom -> base_link.

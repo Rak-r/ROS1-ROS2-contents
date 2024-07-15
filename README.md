@@ -6,10 +6,8 @@
 
 ## ROS2 Helping Scripts
 
-The repo consists of different various ROS2 nodes which can be used for quite specific scenarios and has been tested with a real robot platoform. I have tried to keep the track of different scenraios encounterd while developing a full customautonomous vehicle robot based on ROS2.
+The repo consists of different various ROS2 nodes which can be used for quite specific scenarios and has been tested with a real robot platoform. I have tried to keep the track of different scenraios encounterd while developing a full custom autonomous vehicle robot based on ROS2.
 
-
-   
 
 ### Scripts could be expanded to visualise more data as required.
 
@@ -89,10 +87,10 @@ If a robot is using 2d laser sensor then it has specific message type sensor_msg
 
 ## 3D-LiDAR
 
-*When having a 3d lidar sensor on the robot, the data is best represented by pointclouds.
-*Pointcloud is just a whole lot of points in the 3d space.
-*ROS has specific message type for handling pointcloud data of 3d lidar through `sensor_msgs/PointCloud`.
-*In case of sing RGB-D , stereo cameras for sensor input then, new message type has been provided by ROS community 'sensor_mssg/msg/PointCloud2`.
+* When having a 3d lidar sensor on the robot, the data is best represented by pointclouds.
+* Pointcloud is just a whole lot of points in the 3d space.
+* ROS has specific message type for handling pointcloud data of 3d lidar through `sensor_msgs/PointCloud`.
+* In case of sing RGB-D , stereo cameras for sensor input then, new message type has been provided by ROS community 'sensor_mssg/msg/PointCloud2`.
 
 
 ## SLAM ToolBox: (https://github.com/SteveMacenski/slam_toolbox)
@@ -396,8 +394,8 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 3. #### Now for specificaly ROS2 Integration 
 
-*In the same repo:
-*Under installation and step 2 : install latest Intel® RealSense™ SDK 2.0 
+* In the same repo:
+* Under installation and step 2 : install latest Intel® RealSense™ SDK 2.0 
 
 * select option 2:  Install librealsense2 package from ROS servers:  `sudo apt install ros-humble-librealsense2*`.
 
@@ -417,7 +415,7 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 * Tried -->  `dmesg | grep tty` ,  failed at first Operation not permitted
 
-* try -->> `sudo dmesg | grep tty,sudo dmesg | tail`
+* try --> `sudo dmesg | grep tty,sudo dmesg | tail`
 
 * Then --> `sudo sysctl kernel.dmesg_restrict=0`       [run once]
 
@@ -476,10 +474,12 @@ The ROS2 navigation stack is working but some issues are still hanging.
 
 #### Some links to estimate rotation angle for detected objects from cameras
 
-* https://github.com/pauloabelha/Deep_Object_Pose/blob/master/src/dope.py
+* https://github.com/pauloabelha/Deep_Object_Pose/blob/master/src/dope.py      
 
-* https://github.com/IntelRealSense/librealsense/issues/7560
+* https://github.com/IntelRealSense/librealsense/issues/7560                    
 
-  
+
+
+
 
 

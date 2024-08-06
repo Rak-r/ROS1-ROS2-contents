@@ -19,7 +19,7 @@ class VideoPublisher(Node):
         self.publisher = self.create_publisher(Image, '/camera/color/image_raw', 10)
         self.timer = self.create_timer(1.0 / 30, self.publish_frame)  # Assuming 30 FPS
         self.cv_bridge = CvBridge()
-        self.cap = cv2.VideoCapture("/home/rakshit/Downloads/3_06_57_00.mp4")  # Specify the video path here
+        self.cap = cv2.VideoCapture(0)  # Specify the video path here
 
     def publish_frame(self):
         ret, frame = self.cap.read()
